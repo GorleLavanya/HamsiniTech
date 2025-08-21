@@ -1,0 +1,64 @@
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: "Segoe UI", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url("https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1600&q=80")
+              no-repeat center center/cover;
+  backdrop-filter: blur(6px);
+}
+table {
+  width: 90%;
+  margin: 30px auto;
+  border-collapse: collapse;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  border-radius: 15px;
+  overflow: hidden;
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+table th, table td {
+  padding: 15px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+table th {
+  background: rgba(255, 255, 255, 0.25);
+  font-weight: bold;
+  font-size: 16px;
+}
+
+table tr:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ====== Logout Link ====== */
+a {
+  display: inline-block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background: rgba(255,255,255,0.25);
+  border-radius: 10px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  backdrop-filter: blur(10px);
+  transition: 0.3s;
+}
+
+a:hover {
+  background: rgba(255,255,255,0.45);
+  transform: scale(1.05);
+}
+
+/* ====== Animation ====== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}

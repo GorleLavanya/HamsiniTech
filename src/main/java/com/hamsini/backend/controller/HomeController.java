@@ -1,7 +1,24 @@
 package com.hamsini.backend.controller;
 
+import java.io.IOException;
+import java.util.List;
+
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.hamsini.backend.model.EnrollRequest;
+import com.hamsini.backend.repository.EnrollRepository;
+
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class HomeController {
@@ -93,7 +110,101 @@ public class HomeController {
         return "python"; // loads templates/python.html
     }
 
+    @GetMapping("/mernStack")
+    public String mernStackPage() {
+        return "mernStack"; // loads templates/mernStack.html
+    }
 
+
+    
+
+    @Autowired
+    private EnrollRepository enrollRepo;
+
+    // Show Admin Login Page
+    @GetMapping("/adminlogin")
+    public String showAdminLogin() {
+        return "adminlogin";  
+    }
+
+    // Handle Login
+    @PostMapping("/adminlogin")
+    public String doAdminLogin(@RequestParam String email,
+                               @RequestParam String password,
+                               HttpSession session,
+                               Model model) {
+        if (email.equals("admin@gmail.com") && password.equals("admin123")) {
+            session.setAttribute("admin", true);
+            model.addAttribute("enrollments", enrollRepo.findAll());
+            return "admin-dashboard";  
+        } else {
+            model.addAttribute("error", "Invalid Email or Password");
+            return "adminlogin";
+        }
+    }
+
+    // Admin Dashboard
+    @GetMapping("/admin-dashboard")
+    public String showDashboard(Model model, HttpSession session) {
+        if (session.getAttribute("admin") == null) {
+            return "redirect:/adminlogin"; // secure dashboard
+        }
+        model.addAttribute("enrollments", enrollRepo.findAll());
+        return "admin-dashboard";
+    }
+
+    // Logout
+    @GetMapping("/adminlogout")
+    public String adminLogout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/adminlogin";
+    }
+
+    //Download Export
+    
+    @GetMapping("/admin/export")
+    public void exportToExcel(HttpServletResponse response) throws IOException {
+        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        response.setHeader("Content-Disposition", "attachment; filename=enrollments.xlsx");
+
+        List<EnrollRequest> enrollments = enrollRepo.findAll();
+
+        Workbook workbook = new XSSFWorkbook();
+        Sheet sheet = workbook.createSheet("Enrollments");
+
+        // Header row
+        Row headerRow = sheet.createRow(0);
+        String[] headers = {"ID", "Full Name", "Mobile", "Email", "Course", "Batch"};
+        for (int i = 0; i < headers.length; i++) {
+            headerRow.createCell(i).setCellValue(headers[i]);
+        }
+
+        // Data rows
+        int rowIdx = 1;
+        for (EnrollRequest enroll : enrollments) {
+            Row row = sheet.createRow(rowIdx++);
+            row.createCell(0).setCellValue(enroll.getId());
+            row.createCell(1).setCellValue(enroll.getFullName());
+            row.createCell(2).setCellValue(enroll.getMobile());
+            row.createCell(3).setCellValue(enroll.getEmail());
+            row.createCell(4).setCellValue(enroll.getCourse());
+            row.createCell(5).setCellValue(enroll.getBatch());
+        }
+
+        workbook.write(response.getOutputStream());
+        workbook.close();
+    }
 }
+
+
+
+
+
+
+
+   
+
+
+
 
 

@@ -1,0 +1,263 @@
+body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+      min-height: 100vh;
+      backdrop-filter: blur(4px);
+    }
+
+    /* Header Glass Style */
+    header {
+      background: rgba(0, 11, 36, 0.5);
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    header a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 14px;
+      transition: color 0.3s ease;
+    }
+
+    header a:hover {
+      color: #00b7ff;
+    }
+
+    /* Course Card Glass Style */
+    .course-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      overflow: hidden;
+      width: 320px;
+      margin: 2rem auto;
+      transition: transform 0.3s ease;
+      position: relative;
+    }
+
+    .course-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .course-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: #ff4757;
+      color: #fff;
+      padding: 4px 10px;
+      font-size: 0.75rem;
+      border-radius: 20px;
+      z-index: 1;
+    }
+
+    .course-image-container {
+      width: 100%;
+      height: 180px;
+      overflow: hidden;
+    }
+
+    .course-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .course-content {
+      padding: 1.2rem;
+    }
+
+    .course-title {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .course-instructor {
+      font-size: 0.9rem;
+      color: white;
+      margin-bottom: 0.75rem;
+    }
+
+    .course-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+      color:white;
+    }
+
+    .course-rating {
+      color: #f39c12;
+    }
+
+    .btn {
+      border: none;
+      padding: 0.5rem 0.9rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background 0.3s ease;
+    }
+
+    .btn-sm {
+      font-size: 0.8rem;
+      padding: 0.4rem 0.75rem;
+    }
+
+    .btn-primary {
+      background: rgba(9, 84, 214, 0.25);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: rgba(35, 201, 231, 0.4);
+    }
+
+    .btn-outline {
+      border: 1px solid #ccc;
+      background: rgba(9, 84, 214, 0.25);
+      color: #fff;
+    }
+
+    .btn-outline:hover {
+      background: rgba(35, 201, 231, 0.4);
+      color: #000;
+    }
+
+    
+    .btn-icon {
+      padding: 0.5rem;
+      border-radius: 50%;
+      font-size: 1rem;
+    }
+
+    /* Glass Modal */
+    .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.4);
+    justify-content: center;
+    align-items: center;
+    
+  }
+
+    .modal-content {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 2rem;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    color: #fff;
+    
+  }
+   .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .modal-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .modal-close {
+      cursor: pointer;
+      font-size: 1.5rem;
+      color: #fff;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.5rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    .social-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px; /* size of the circle */
+  height: 50px;
+  border-radius: 50%;
+  color: white;
+  font-size: 22px; /* icon size */
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.social-link:hover {
+  transform: scale(1.1);
+}
+
+/* Background colors for each platform */
+.social-link.facebook { background-color: #3b5998; }
+.social-link.twitter { background-color: #1da1f2; }
+.social-link.instagram { background-color: #e4405f; }
+.social-link.linkedin { background-color: #0077b5; }
+.social-link.whatsapp { background-color: #25d366; border: none; cursor: pointer; }
+
+    /* Course Highlights - Glass */
+    .course-points {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      color: #fff;
+    }
+
+    .course-points h2 {
+      text-align: left;
+      color: #00cec9;
+      margin-bottom: 1rem;
+    }
+
+    .course-points ul {
+      list-style: none;
+      padding-left: 0;
+      line-height: 1.8;
+    }
+
+    .course-points ul li::before {
+      content: "✔ ";
+      color: #2ecc71;
+    }
