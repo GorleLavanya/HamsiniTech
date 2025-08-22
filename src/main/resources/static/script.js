@@ -151,6 +151,38 @@
                 }
             });
         });
+        // Mobile menu functionality
+        const menuToggle = document.getElementById('menuToggle');
+        const mainNav = document.getElementById('mainNav');
+        const contactInfo = document.getElementById('contactInfo');
+        
+        menuToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            this.classList.toggle('active');
+            mainNav.classList.toggle('active');
+            contactInfo.classList.toggle('active');
+        });
+        
+        // Close menus when clicking outside
+        document.addEventListener('click', function(event) {
+            const isClickInsideHeader = event.target.closest('.header');
+            
+            if (!isClickInsideHeader) {
+                menuToggle.classList.remove('active');
+                mainNav.classList.remove('active');
+                contactInfo.classList.remove('active');
+            }
+        });
+        
+        // Prevent closing when clicking inside the menu
+        mainNav.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+        
+        contactInfo.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    
 
         
     
